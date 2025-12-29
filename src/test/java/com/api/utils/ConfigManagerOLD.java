@@ -1,0 +1,30 @@
+package com.api.utils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
+public class ConfigManagerOLD {
+
+    public static Properties prop = new Properties();
+
+    static{
+        //static block execute only once during class loading time so in memory property file will be loaded once
+        File configFile = new File(System.getProperty("user.dir")+ File.separator + "src" + File.separator +"test" + File.separator +"resources" +File.separator+"config" + File.separator + "config.properties");
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(configFile);
+            prop.load(fileReader);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+         catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static String getProperty(String key){
+        return prop.getProperty(key);
+    }
+}
