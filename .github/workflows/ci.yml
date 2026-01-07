@@ -13,6 +13,16 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  schedule:    #set time in UTC
+    - cron: "30 18 * * *"
+  workflow_dispatch:
+      inputs:
+         env: 
+           description: "Environment"
+           type: choice
+           options: [qa,uat,dev]
+           default: qa
+           required: true
 
 jobs:
   test:
