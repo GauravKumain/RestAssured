@@ -23,6 +23,7 @@ public class UserDetailsAPITest {
         Header headerOne = new Header("Authorization", getToken(FD));
 
         String fname = given()
+                .log().uri()
                 .baseUri(getProperty("BASE_URI"))
                 .and()
                 .accept(JSON)
