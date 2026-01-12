@@ -1,16 +1,11 @@
 package com.api.tests;
 
 import static com.api.utils.ConfigManager.*;
-
-import static com.api.utils.AuthTokenProvider.*;
-
 import static com.api.constant.Role.*;
-import io.restassured.http.Header;
+import com.api.utils.SpecUtil;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
-
 import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.*;
 import static org.hamcrest.Matchers.*;
@@ -20,7 +15,6 @@ public class UserDetailsAPITest {
     @Test
     public void UserDetailsAPITest() throws IOException {
 
-        Header headerOne = new Header("Authorization", getToken(FD));
 
         String fname = given()
                 .log().uri()
@@ -28,14 +22,12 @@ public class UserDetailsAPITest {
                 .and()
                 .accept(JSON)
                 .and()
-                .header(headerOne)
+                .spec(SpecUtil.requestSpecWithAuth(FD))
                 .when()
                 .get("userdetails")
                 .then()
-                .log().all()
-                .statusCode(200)
-                .time(lessThan(1500L))
-                .body("message",equalTo("Success"))
+                .spec(SpecUtil.responseSpec_OK())
+                .body("message", equalTo("Success"))
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/userDetailsResponseSchema.json"))
                 .extract()
                 .jsonPath()
