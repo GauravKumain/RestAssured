@@ -12,6 +12,7 @@ test-output/
 *.iws
 *.iml
 *.ipr
+.idea/uiDesigner.xml
 
 ### Eclipse ###
 .apt_generated
