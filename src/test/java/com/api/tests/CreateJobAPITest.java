@@ -3,12 +3,8 @@ package com.api.tests;
 import static com.api.constant.Role.*;
 import static io.restassured.RestAssured.*;
 
-import com.api.constant.Role;
-import com.api.pojo.*;
-import com.api.utils.AuthTokenProvider;
-import com.api.utils.ConfigManager;
+import com.api.request.model.*;
 import com.api.utils.SpecUtil;
-import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
