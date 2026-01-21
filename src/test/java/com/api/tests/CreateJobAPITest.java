@@ -4,6 +4,7 @@ import static com.api.constant.Role.*;
 import static com.api.utils.DateTimeUtil.getTimeWithDaysAgo;
 import static io.restassured.RestAssured.*;
 
+import com.api.constant.*;
 import com.api.request.model.*;
 import com.api.utils.SpecUtil;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -22,12 +23,12 @@ public class CreateJobAPITest {
 
         Customer customer = new Customer("Gaurav","Kumain","8787474487","","qwssww@gmail.com","");
         CustomerAddress customerAddress = new CustomerAddress("101","raja","aaawaj","rana","badrish","12212","India","uttarakhand");
-        CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10),"16572885284313","16572885284313","16572885284313",getTimeWithDaysAgo(10),1,1);
-        Problems problems = new Problems(1,"Battery Issue");
+        CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10),"16572885284323","16572885284323","16572885284323",getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
+        Problems problems = new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
         List<Problems> problemList  = new ArrayList<Problems>();
         problemList.add(problems);
 
-        CreateJobPayload createJobPayload = new CreateJobPayload(0,2,1,1,customer,customerAddress,customerProduct,problemList);
+        CreateJobPayload createJobPayload = new CreateJobPayload(Service_Location.SERVICE_LOCATION_A.getCode(), Platform.Front_Desk.getCode(), Warranty_Status.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(),customer,customerAddress,customerProduct,problemList);
 
 
         given()
