@@ -3,14 +3,16 @@ package com.api.tests;
 
 import static com.api.utils.SpecUtil.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
+
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
+
 import static com.api.constant.Role.*;
 import static io.restassured.RestAssured.given;
 
 public class CountAPITest {
 
-    @Test(description = "Validating if count api is giving correct response", groups = {"api","regression"})
+    @Test(description = "Validating if count api is giving correct response", groups = {"api", "regression"})
 
     public void verifyCountAPIResponse() {
         given()
@@ -29,7 +31,7 @@ public class CountAPITest {
 
     }
 
-    @Test(description = "Validating if count api giving correct stratus codes ", groups = {"api","negative"})
+    @Test(description = "Validating if count api giving correct stratus codes ", groups = {"api", "negative"})
     public void countAPITest_MissingAuthToken() {
         given()
                 .spec(requestSpec())
