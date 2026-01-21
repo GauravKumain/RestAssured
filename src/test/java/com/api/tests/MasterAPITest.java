@@ -1,24 +1,24 @@
 package com.api.tests;
 
-import com.api.utils.SpecUtil;
-import io.restassured.module.jsv.JsonSchemaValidator;
+import static com.api.utils.SpecUtil.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
-import static com.api.constant.Role.FD;
+import static com.api.constant.Role.*;
 import static io.restassured.RestAssured.given;
 
 public class MasterAPITest {
 
-    @Test
+    @Test(description = "Validating if correct status codes are given in response", groups = {"api","negative"})
 
     public void masterAPITest() {
         given()
-                .spec(SpecUtil.requestSpecWithAuth(FD))
+                .spec(requestSpecWithAuth(FD))
                 .when()
                 .post("master")
                 .then()
-                .spec(SpecUtil.responseSpec_OK())
+                .spec(responseSpec_OK())
                 .body("message", Matchers.equalTo("Success"))
                 .body("data", Matchers.notNullValue())
                 .body("data", Matchers.hasKey("mst_oem"))
@@ -29,7 +29,7 @@ public class MasterAPITest {
                 .body("data.mst_model.size()", Matchers.greaterThan(0))
                 .body("data.mst_oem.id", Matchers.everyItem(Matchers.notNullValue()))
                 .body("data.mst_oem.name", Matchers.everyItem(Matchers.notNullValue()))
-                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/masterAPIResponseSchema"));
+                .body(matchesJsonSchemaInClasspath("responseSchema/masterAPIResponseSchema"));
 
     }
 
@@ -37,11 +37,11 @@ public class MasterAPITest {
     @Test
     public void invalidTokenMasterAPITest() {
         given()
-                .spec(SpecUtil.requestSpec())
+                .spec(requestSpec())
                 .log().all()
                 .when()
                 .post("master")
                 .then()
-                .spec(SpecUtil.responseSpec_TEXT(401));
+                .spec(responseSpec_TEXT(401));
     }
 }
