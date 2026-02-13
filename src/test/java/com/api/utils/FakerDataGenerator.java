@@ -14,6 +14,8 @@ public class FakerDataGenerator {
     private static final int MST_WARRANTY_STATUS_ID = 1;
     private static final int MST_OEM_ID = 1;
 
+    private static final int validProblemsId[] ={1,2,3,4,5,6,7,8,9,10,11,12,15,16,17,19,20,22,24,26,27,28,29};
+
 
     private FakerDataGenerator() {
     }
@@ -47,8 +49,8 @@ public class FakerDataGenerator {
         String fakerRemark = faker.lorem().sentence(5);
 
 
-        int id = RANDOM.nextInt(26) + 1;
-        Problems problems = new Problems(id, fakerRemark);
+        int randomIndex = RANDOM.nextInt(validProblemsId.length);
+        Problems problems = new Problems(validProblemsId[randomIndex], fakerRemark);
         System.out.println(problems);
 
         List<Problems> problemsList = new ArrayList<>();

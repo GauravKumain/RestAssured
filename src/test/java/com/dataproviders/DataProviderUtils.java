@@ -43,7 +43,7 @@ public class DataProviderUtils {
     @DataProvider(name = "CreateJobAPIFakerDataProvider",parallel = true)
     public static Iterator<CreateJobPayload> CreateJobFakeDataProvider(){
 
-        Iterator<CreateJobPayload> createJobPayloadIterator = FakerDataGenerator.generateFakeCreateJobData(10);
+        Iterator<CreateJobPayload> createJobPayloadIterator = FakerDataGenerator.generateFakeCreateJobData(100);
         return createJobPayloadIterator;
 
     }
