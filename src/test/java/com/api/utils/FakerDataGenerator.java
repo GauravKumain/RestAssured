@@ -31,7 +31,7 @@ public class FakerDataGenerator {
 
     public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count) {
         List<CreateJobPayload> payloadList = new ArrayList<>();
-        for (int i = 0; i <= count; i++) {
+        for (int i = 1; i <= count; i++) {
 
             Customer customer = generateFakeCustomerData();
             CustomerAddress customerAddress = generateFakeCustomerAddressData();
