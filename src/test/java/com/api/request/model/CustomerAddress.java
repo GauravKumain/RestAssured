@@ -12,5 +12,5 @@ public record CustomerAddress (
      String state
     )
 
-    {
+{
     }
